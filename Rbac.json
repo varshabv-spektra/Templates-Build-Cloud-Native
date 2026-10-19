@@ -1,0 +1,49 @@
+{
+  "Name": "Spektra Custom RBAC",
+  "Id": null,
+  "IsCustom": true,
+  "Description": "Spektra Training Custom Role - Lab 03 (Azure HorizonDB + Foundry) and Lab 04 (Foundry IQ: AI Search + Azure OpenAI + Foundry + Storage + Deployment Script) with Lab VM.",
+  "Actions": [
+    "Microsoft.Authorization/*/read",
+    "Microsoft.Authorization/roleAssignments/*",
+    "Microsoft.Resources/subscriptions/read",
+    "Microsoft.Resources/subscriptions/locations/read",
+    "Microsoft.Resources/subscriptions/resourceGroups/read",
+    "Microsoft.Resources/subscriptions/resourceGroups/resources/read",
+    "Microsoft.Resources/deployments/*",
+    "Microsoft.Resources/deploymentScripts/*",
+    "Microsoft.HorizonDB/register/action",
+    "Microsoft.CognitiveServices/register/action",
+    "Microsoft.Search/register/action",
+    "Microsoft.Storage/register/action",
+    "Microsoft.ManagedIdentity/register/action",
+    "Microsoft.ContainerInstance/register/action",
+    "Microsoft.Compute/register/action",
+    "Microsoft.Network/register/action",
+    "Microsoft.HorizonDB/*",
+    "Microsoft.CognitiveServices/accounts/*",
+    "Microsoft.CognitiveServices/locations/*",
+    "Microsoft.CognitiveServices/checkDomainAvailability/action",
+    "Microsoft.Search/searchServices/*",
+    "Microsoft.Storage/storageAccounts/*",
+    "Microsoft.ManagedIdentity/userAssignedIdentities/*",
+    "Microsoft.ContainerInstance/containerGroups/*",
+    "Microsoft.Compute/disks/*",
+    "Microsoft.Compute/virtualMachines/*",
+    "Microsoft.Network/networkInterfaces/*",
+    "Microsoft.Network/networkSecurityGroups/*",
+    "Microsoft.Network/publicIPAddresses/*",
+    "Microsoft.Network/virtualNetworks/*",
+    "Microsoft.Support/*"
+  ],
+  "NotActions": [],
+  "DataActions": [
+    "Microsoft.CognitiveServices/*",
+    "Microsoft.Search/searchServices/*",
+    "Microsoft.Storage/storageAccounts/blobServices/containers/*"
+  ],
+  "NotDataActions": [],
+  "AssignableScopes": [
+    "/subscriptions/<subscription-id>"
+  ]
+}
