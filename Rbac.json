@@ -2,10 +2,11 @@
   "Name": "Spektra Custom RBAC",
   "Id": null,
   "IsCustom": true,
-  "Description": "Spektra Training Custom Role - Lab 03 (Azure HorizonDB + Foundry) and Lab 04 (Foundry IQ: AI Search + Azure OpenAI + Foundry + Storage + Deployment Script) with Lab VM.",
+  "Description": "Spektra Training Custom Role - Lab 03 (Azure HorizonDB + Foundry) and Lab 04 (Foundry IQ: AI Search + Azure OpenAI + Foundry + Storage + Deployment Script). Assign at the Cloud-Native resource group scope only.",
   "Actions": [
     "Microsoft.Authorization/*/read",
-    "Microsoft.Authorization/roleAssignments/*",
+    "Microsoft.Authorization/roleAssignments/write",
+    "Microsoft.Authorization/roleAssignments/delete",
     "Microsoft.Resources/subscriptions/read",
     "Microsoft.Resources/subscriptions/locations/read",
     "Microsoft.Resources/subscriptions/resourceGroups/read",
