@@ -42,24 +42,6 @@
       {
         "allOf": [
           {
-            "field": "location",
-            "exists": "true"
-          },
-          {
-            "not": {
-              "field": "location",
-              "in": [
-                "eastus",
-                "centralus",
-                "global"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "allOf": [
-          {
             "field": "type",
             "equals": "Microsoft.CognitiveServices/accounts"
           },
