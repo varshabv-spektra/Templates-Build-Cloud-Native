@@ -1,0 +1,36 @@
+{
+  "Name": "Spektra Custom RBAC",
+  "Id": null,
+  "IsCustom": true,
+  "Description": "Spektra Training Custom Role - Lab 05 (Foundry Control Plane: Foundry resource + Foundry project + gpt-5.2 deployment + Application Insights + Log Analytics workspace). Assign at the AgenticAI resource group scope only.",
+  "Actions": [
+    "Microsoft.Authorization/*/read",
+    "Microsoft.Authorization/roleAssignments/write",
+    "Microsoft.Authorization/roleAssignments/delete",
+    "Microsoft.Resources/subscriptions/read",
+    "Microsoft.Resources/subscriptions/locations/read",
+    "Microsoft.Resources/subscriptions/resourceGroups/read",
+    "Microsoft.Resources/subscriptions/resourceGroups/resources/read",
+    "Microsoft.Resources/deployments/*",
+    "Microsoft.CognitiveServices/register/action",
+    "Microsoft.OperationalInsights/register/action",
+    "Microsoft.Insights/register/action",
+    "Microsoft.CognitiveServices/accounts/*",
+    "Microsoft.CognitiveServices/locations/*",
+    "Microsoft.CognitiveServices/checkDomainAvailability/action",
+    "Microsoft.OperationalInsights/workspaces/*",
+    "Microsoft.Insights/components/*",
+    "Microsoft.Insights/metrics/read",
+    "Microsoft.Insights/metricDefinitions/read",
+    "Microsoft.Insights/logs/read",
+    "Microsoft.Support/*"
+  ],
+  "NotActions": [],
+  "DataActions": [
+    "Microsoft.CognitiveServices/*"
+  ],
+  "NotDataActions": [],
+  "AssignableScopes": [
+    "/subscriptions/<subscription-id>"
+  ]
+}
