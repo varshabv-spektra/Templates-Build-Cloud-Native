@@ -1,0 +1,130 @@
+{
+  "if": {
+    "anyOf": [
+      {
+        "not": {
+          "anyOf": [
+            {
+              "field": "type",
+              "like": "Microsoft.CognitiveServices/accounts/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.OperationalInsights/workspaces/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Insights/components/*"
+            },
+            {
+              "field": "type",
+              "in": [
+                "Microsoft.CognitiveServices/accounts",
+                "Microsoft.OperationalInsights/workspaces",
+                "Microsoft.Insights/components",
+                "Microsoft.Authorization/roleAssignments"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.CognitiveServices/accounts"
+          },
+          {
+            "anyOf": [
+              {
+                "not": {
+                  "field": "Microsoft.CognitiveServices/accounts/sku.name",
+                  "in": [
+                    "S0"
+                  ]
+                }
+              },
+              {
+                "not": {
+                  "field": "kind",
+                  "in": [
+                    "AIServices"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.CognitiveServices/accounts/deployments"
+          },
+          {
+            "anyOf": [
+              {
+                "not": {
+                  "field": "Microsoft.CognitiveServices/accounts/deployments/model.name",
+                  "in": [
+                    "gpt-5.2"
+                  ]
+                }
+              },
+              {
+                "not": {
+                  "field": "Microsoft.CognitiveServices/accounts/deployments/sku.name",
+                  "in": [
+                    "GlobalStandard",
+                    "DataZoneStandard",
+                    "Standard"
+                  ]
+                }
+              },
+              {
+                "field": "Microsoft.CognitiveServices/accounts/deployments/sku.capacity",
+                "greater": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.OperationalInsights/workspaces"
+          },
+          {
+            "not": {
+              "field": "Microsoft.OperationalInsights/workspaces/sku.name",
+              "in": [
+                "PerGB2018"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Insights/components"
+          },
+          {
+            "not": {
+              "field": "kind",
+              "in": [
+                "web"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "then": {
+    "effect": "deny"
+  }
+}
