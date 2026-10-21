@@ -6,11 +6,39 @@
           "anyOf": [
             {
               "field": "type",
+              "like": "microsoft.alertsmanagement/smartDetectorAlertRules/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Authorization/roleAssignments/*"
+            },
+            {
+              "field": "type",
               "like": "Microsoft.CognitiveServices/accounts/*"
             },
             {
               "field": "type",
-              "like": "Microsoft.OperationalInsights/workspaces/*"
+              "like": "Microsoft.Compute/availabilitySets/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Compute/disks/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Compute/virtualMachines/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.ContainerRegistry/registries/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.ContainerService/managedClusters/*"
+            },
+            {
+              "field": "type",
+              "like": "microsoft.insights/actiongroups/*"
             },
             {
               "field": "type",
@@ -18,15 +46,166 @@
             },
             {
               "field": "type",
+              "like": "Microsoft.KeyVault/vaults/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Network/networkInterfaces/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Network/networkSecurityGroups/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Network/publicIPAddresses/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Network/virtualNetworks/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.OperationalInsights/workspaces/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Sql/servers/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Storage/storageAccounts/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Web/serverfarms/*"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Web/sites/*"
+            },
+            {
+              "field": "type",
               "in": [
+                "microsoft.alertsmanagement/smartDetectorAlertRules",
+                "Microsoft.Authorization/roleAssignments",
                 "Microsoft.CognitiveServices/accounts",
-                "Microsoft.OperationalInsights/workspaces",
+                "Microsoft.CognitiveServices/accounts/connections",
+                "Microsoft.CognitiveServices/accounts/deployments",
+                "Microsoft.CognitiveServices/accounts/projects",
+                "Microsoft.Compute/availabilitySets",
+                "Microsoft.Compute/disks",
+                "Microsoft.Compute/virtualMachines",
+                "Microsoft.Compute/virtualMachines/extensions",
+                "Microsoft.ContainerRegistry/registries",
+                "Microsoft.ContainerService/managedClusters",
+                "Microsoft.ContainerService/managedClusters/agentPools",
+                "microsoft.insights/actiongroups",
                 "Microsoft.Insights/components",
-                "Microsoft.Authorization/roleAssignments"
+                "Microsoft.KeyVault/vaults",
+                "Microsoft.Network/networkInterfaces",
+                "Microsoft.Network/networkSecurityGroups",
+                "Microsoft.Network/publicIPAddresses",
+                "Microsoft.Network/virtualNetworks",
+                "Microsoft.Network/virtualNetworks/subnets",
+                "Microsoft.OperationalInsights/workspaces",
+                "Microsoft.OperationalInsights/workspaces/dataSources",
+                "Microsoft.Sql/servers",
+                "Microsoft.Sql/servers/databases",
+                "Microsoft.Sql/servers/firewallRules",
+                "Microsoft.Storage/storageAccounts",
+                "Microsoft.Web/serverfarms",
+                "Microsoft.Web/sites"
               ]
             }
           ]
         }
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Compute/disks"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Compute/disks/sku.name",
+              "in": [
+                "Standard_LRS"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Compute/virtualMachines"
+          },
+          {
+            "not": {
+              "anyOf": [
+                {
+                  "allOf": [
+                    {
+                      "field": "Microsoft.Compute/virtualMachines/imageOffer",
+                      "in": [
+                        "WindowsServer"
+                      ]
+                    },
+                    {
+                      "field": "Microsoft.Compute/virtualMachines/imagePublisher",
+                      "in": [
+                        "MicrosoftWindowsServer"
+                      ]
+                    },
+                    {
+                      "field": "Microsoft.Compute/virtualMachines/imageSku",
+                      "in": [
+                        "2016-Datacenter"
+                      ]
+                    },
+                    {
+                      "field": "Microsoft.Compute/virtualMachines/sku.name",
+                      "in": [
+                        "Standard_B1ms"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "allOf": [
+                    {
+                      "field": "Microsoft.Compute/virtualMachines/imageOffer",
+                      "in": [
+                        "0001-com-ubuntu-server-jammy"
+                      ]
+                    },
+                    {
+                      "field": "Microsoft.Compute/virtualMachines/imagePublisher",
+                      "in": [
+                        "Canonical"
+                      ]
+                    },
+                    {
+                      "field": "Microsoft.Compute/virtualMachines/imageSku",
+                      "in": [
+                        "22_04-lts-gen2"
+                      ]
+                    },
+                    {
+                      "field": "Microsoft.Compute/virtualMachines/sku.name",
+                      "in": [
+                        "Standard_B1ms"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
       },
       {
         "allOf": [
@@ -118,6 +297,172 @@
               "in": [
                 "web"
               ]
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Network/publicIPAddresses"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Network/publicIPAddresses/sku.name",
+              "in": [
+                "Standard"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Storage/storageAccounts"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Storage/storageAccounts/sku.name",
+              "in": [
+                "Standard_LRS"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Web/serverfarms"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Web/serverfarms/sku.name",
+              "in": [
+                "S1"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.KeyVault/vaults"
+          },
+          {
+            "not": {
+              "field": "Microsoft.KeyVault/vaults/sku.name",
+              "in": [
+                "standard"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.ContainerService/managedClusters"
+          },
+          {
+            "anyOf": [
+              {
+                "not": {
+                  "field": "Microsoft.ContainerService/managedClusters/agentPoolProfiles[*].vmSize",
+                  "in": [
+                    "Standard_B2s"
+                  ]
+                }
+              },
+              {
+                "not": {
+                  "field": "Microsoft.ContainerService/managedClusters/agentPoolProfiles[*].count",
+                  "lessOrEquals": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.ContainerService/managedClusters/agentPools"
+          },
+          {
+            "anyOf": [
+              {
+                "not": {
+                  "field": "Microsoft.ContainerService/managedClusters/agentPools/vmSize",
+                  "in": [
+                    "Standard_B2s"
+                  ]
+                }
+              },
+              {
+                "field": "Microsoft.ContainerService/managedClusters/agentPools/count",
+                "greater": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.ContainerRegistry/registries"
+          },
+          {
+            "not": {
+              "field": "Microsoft.ContainerRegistry/registries/sku.name",
+              "in": [
+                "Basic"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Sql/servers/databases"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Sql/servers/databases/sku.name",
+              "in": [
+                "Basic"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Authorization/roleAssignments"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Authorization/roleAssignments/roleDefinitionId",
+              "like": "*43d0d8ad-25c7-4714-9337-8ba259a9fe05"
+            }
+          },
+          {
+            "not": {
+              "field": "Microsoft.Authorization/roleAssignments/roleDefinitionId",
+              "like": "*53ca6127-db72-4b80-b1b0-d745d6d5456d"
             }
           }
         ]
